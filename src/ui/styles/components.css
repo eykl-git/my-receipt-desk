@@ -1651,19 +1651,25 @@
 
 /* Clean Explanations & Sample Disclosure */
 .ks-explain-wrap {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .ks-explain-wrap .ks-explain {
-  margin: 0 0 4px;
-  font-size: var(--text-13);
+  margin: 0 0 2px;
+  font-size: var(--text-12);
   color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.ks-explain-wrap .ks-line {
+  display: none;
 }
 
 .ks-explain-wrap .ks-note {
   margin: 0;
   font-size: var(--text-11);
   color: #64748b;
+  line-height: 1.35;
 }
 
 .samples-disclosure {
@@ -1729,6 +1735,59 @@
   border-color: var(--color-knowledge-border);
   color: var(--color-knowledge-strong);
 }
+
+/* High-Impact Hero Actions for Campaign 21 & Video Production */
+.btn-gap-action {
+  background-color: var(--color-knowledge-bg) !important;
+  color: var(--color-knowledge-strong) !important;
+  border: 1.5px solid var(--color-knowledge) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15) !important;
+  transition: all var(--t-fast) var(--ease) !important;
+}
+
+.btn-gap-action:hover:not(:disabled) {
+  background-color: var(--color-knowledge) !important;
+  color: #ffffff !important;
+  border-color: var(--color-knowledge-strong) !important;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.25) !important;
+}
+
+.btn-propose-rule {
+  background-color: var(--color-knowledge) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--color-knowledge-strong) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(15, 118, 110, 0.2) !important;
+  transition: all var(--t-fast) var(--ease) !important;
+}
+
+.btn-propose-rule:hover:not(:disabled) {
+  background-color: var(--color-knowledge-strong) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 8px rgba(15, 118, 110, 0.3) !important;
+}
+
+/* Automation event pulse on newly ready rule chip */
+@keyframes newlyReadyPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.15);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0);
+  }
+}
+
+.chip-rule {
+  animation: newlyReadyPulse 1.8s ease-in-out 3;
+}
+
 
 
 

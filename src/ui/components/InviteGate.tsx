@@ -1,4 +1,5 @@
 import { useState, useEffect, type FormEvent, type ReactNode } from 'react';
+import { store } from '../store';
 import {
   clearSession,
   getStoredSession,
@@ -20,7 +21,11 @@ export function InviteGate({ children }: InviteGateProps) {
     return getStoredSession();
   });
   const [inputKey, setInputKey] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    return Boolean(params.get('key') || params.get('invite'));
+  });
   const [error, setError] = useState<string | null>(null);
 
   // Check 1-click VIP link in URL: ?key=... or ?invite=...
@@ -31,9 +36,7 @@ export function InviteGate({ children }: InviteGateProps) {
     const directKey = params.get('key') || params.get('invite');
 
     if (directKey) {
-      setLoading(true);
-      setError(null);
-      validateInviteKey(directKey)
+      void validateInviteKey(directKey)
         .then((result) => {
           if (result.valid && result.code) {
             storeSession(result.code, result.guestName || 'VIP Guest');
@@ -47,6 +50,7 @@ export function InviteGate({ children }: InviteGateProps) {
             params.delete('invite');
             const cleanSearch = params.toString() ? `?${params.toString()}` : '';
             window.history.replaceState({}, '', `${window.location.pathname}${cleanSearch}${window.location.hash}`);
+            void store.tryDemo();
           } else {
             setError(result.reason || 'Invalid invitation key.');
           }
@@ -76,6 +80,7 @@ export function InviteGate({ children }: InviteGateProps) {
           guestName: result.guestName || 'Invited Guest',
           authenticatedAt: new Date().toISOString(),
         });
+        void store.tryDemo();
       } else {
         setError(result.reason || 'Invalid invitation key.');
       }

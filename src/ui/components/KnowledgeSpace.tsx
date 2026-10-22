@@ -129,7 +129,7 @@ function KnowledgeGaps() {
         {gaps.map((g) => (
           <li key={`${g.accountId}|${g.observedLabel}|${g.merchantId}`} className="gap-card" data-testid="gap-card">
             <p className="gap-text">{gapText(g)}</p>
-            <button type="button" className="btn btn-secondary btn-small" onClick={() => void store.openCase(g.reviewReceiptId)}>
+            <button type="button" className="btn btn-secondary btn-small btn-gap-action" onClick={() => void store.openCase(g.reviewReceiptId)}>
               {COPY.reviewCase(g.reviewReceiptId)}
             </button>
           </li>

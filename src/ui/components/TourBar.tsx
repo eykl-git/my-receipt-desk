@@ -71,6 +71,39 @@ export function TourBar() {
 
   return (
     <section className="tour-bar" aria-label={COPY.tourLabel}>
+      <div className="tour-hud-header">
+        <div className="tour-hud-brand">
+          <span className="tour-hud-badge">CAMPAIGN 21 · KNOWLEDGE HUD</span>
+          <span className="tour-hud-thesis">
+            “Correct once. Approve what should be remembered. Reuse safely next time.”
+          </span>
+        </div>
+        <div className="tour-hud-stages" role="group" aria-label="Knowledge Flywheel stages">
+          <div className={`tour-hud-stage${step === 1 ? ' is-active' : step > 1 ? ' is-done' : ''}`}>
+            <span className="hud-stage-num">1</span>
+            <span className="hud-stage-title">Encounter</span>
+            <span className="hud-stage-sub">Gap found</span>
+          </div>
+          <span className="hud-stage-arrow" aria-hidden="true">→</span>
+          <div className={`tour-hud-stage${step === 2 ? ' is-active' : step > 2 ? ' is-done' : ''}`}>
+            <span className="hud-stage-num">2</span>
+            <span className="hud-stage-title">Approve Law</span>
+            <span className="hud-stage-sub">K-ALIAS-0001</span>
+          </div>
+          <span className="hud-stage-arrow" aria-hidden="true">→</span>
+          <div className={`tour-hud-stage${step === 3 ? ' is-active' : step > 3 ? ' is-done' : ''}`}>
+            <span className="hud-stage-num">3</span>
+            <span className="hud-stage-title">Governed Reuse</span>
+            <span className="hud-stage-sub">Auto-matched</span>
+          </div>
+          <span className="hud-stage-arrow" aria-hidden="true">→</span>
+          <div className={`tour-hud-stage${step === 4 ? ' is-active' : ''}`}>
+            <span className="hud-stage-num">4</span>
+            <span className="hud-stage-title">Boundary Holds</span>
+            <span className="hud-stage-sub">Refusal to guess</span>
+          </div>
+        </div>
+      </div>
       <div className="tour-main">
         <div className="tour-step">
           <span className="tour-step-label" data-testid="tour-step">

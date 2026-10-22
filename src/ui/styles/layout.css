@@ -124,12 +124,15 @@
 }
 
 .notice-bar {
-  padding: 3px var(--space-6);
-  font-size: var(--text-11);
-  font-weight: 400;
-  color: var(--color-text-secondary);
+  padding: 2px var(--space-6);
+  font-size: 11px;
+  font-weight: 500;
+  color: #334155;
   background-color: transparent;
-  border-bottom: 1px solid var(--color-border);
+  border: none;
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
 }
 
 .banner {
@@ -169,16 +172,130 @@
 /* Dark Slate Hero Command Bar for Guided Demo (Stitch UX-Audit focal hierarchy) */
 .tour-bar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px var(--space-4);
-  margin: var(--space-2) var(--space-6) 0;
-  padding: 10px 16px;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px var(--space-6) 0;
+  padding: 8px 14px;
   background-color: #0f172a;
   color: #f8fafc;
   border: 1px solid #1e293b;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-raised);
+}
+
+/* Executive VIP Campaign HUD Header */
+.tour-hud-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px var(--space-3);
+  width: 100%;
+  padding-bottom: 6px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tour-hud-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.tour-hud-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2dd4bf;
+  background: rgba(15, 118, 110, 0.3);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tour-hud-thesis {
+  font-size: var(--text-12);
+  font-weight: 500;
+  color: #cbd5e1;
+  font-style: italic;
+  margin: 0;
+}
+
+.tour-hud-stages {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tour-hud-stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.tour-hud-stage.is-active {
+  background: #115e59;
+  border-color: #2dd4bf;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.25);
+}
+
+.tour-hud-stage.is-done {
+  background: #14532d;
+  border-color: #4ade80;
+  color: #ffffff;
+}
+
+.hud-stage-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.tour-hud-stage.is-active .hud-stage-num {
+  background: #2dd4bf;
+  color: #0f172a;
+}
+
+.tour-hud-stage.is-done .hud-stage-num {
+  background: #4ade80;
+  color: #0f172a;
+}
+
+.hud-stage-title {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hud-stage-sub {
+  font-size: 10px;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.hud-stage-arrow {
+  color: #94a3b8;
+  font-size: 11px;
 }
 
 .tour-step {
@@ -242,6 +359,14 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
+}
+
+.tour-actions-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 8px;
+  border-left: 1px solid #334155;
 }
 
 .tour-bar .btn-primary {
@@ -315,77 +440,64 @@
 
 /* Minimalist Flat KPI Strip (Stitch UX-Audit: zero nested boxes-in-boxes) */
 .counters {
-  margin: var(--space-2) var(--space-6) 0;
-  padding: 8px 16px;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-xs);
+  margin: 4px var(--space-6) 0;
+  padding: 4px 12px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: none;
 }
 
 .counters-head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  margin-bottom: 4px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--color-surface-subtle);
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  border-bottom: none;
 }
 
 .section-label {
-  font-size: var(--text-11);
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--color-text-secondary);
 }
 
 .stat-groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-3);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 1023px) {
+  .stat-groups {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .stat-group {
   min-width: 0;
-  padding: 2px 14px 2px 0;
+  padding: 0 10px 0 0;
   background-color: transparent;
   border: 0;
   border-right: 1px solid var(--color-border);
   border-radius: 0;
 }
 
-.stat-group:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
 .stat-group:last-child {
-  padding-right: 0;
   border-right: 0;
-}
-
-@media (max-width: 1023px) {
-  .stat-group,
-  .stat-group:first-child,
-  .stat-group:last-child {
-    padding: 6px 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .stat-group:last-child {
-    border-bottom: 0;
-  }
+  padding-right: 0;
 }
 
 .stat-group-title {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: var(--text-11);
-  font-weight: 600;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-text);
@@ -428,20 +540,21 @@
   justify-content: space-between;
   align-items: baseline;
   gap: var(--space-2);
-  padding: 1px 0;
-  font-size: var(--text-12);
-  line-height: 1.4;
+  padding: 0;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .stat-label {
   color: var(--color-text-secondary);
+  font-size: 11px;
 }
 
 .stat-value {
   margin: 0;
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: var(--text-12);
+  font-size: 11px;
   color: var(--color-text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

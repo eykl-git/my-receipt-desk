@@ -158,20 +158,24 @@ export class AppStore {
     this.repos = { demo, personal };
     await Promise.all([this.refresh('demo'), this.refresh('personal')]);
     // Restore the last-used workspace (§11.1: the choice only, no data).
-    if (readLastWorkspace() === 'demo') {
+    const params = new URLSearchParams(window.location.search);
+    const keyParam = params.get('key') || params.get('invite');
+    const isVipUrl = Boolean(keyParam);
+    if (readLastWorkspace() === 'demo' || isVipUrl) {
       this.set({ workspace: 'demo' });
       this.prefetchUnloaded();
     }
     this.set({ ready: true });
     void this.fetchExampleCsv();
-    const params = new URLSearchParams(window.location.search);
     // Browser-test aid (design §20 A-S5-6): a bounded wait between "Record all ready" commits.
     const delay = Number(params.get('recordDelay'));
     if (Number.isInteger(delay) && delay > 0) this.commitDelayMs = Math.min(delay, 2000);
-    if (params.get('demo') === '1') {
-      params.delete('demo');
-      const q = params.toString();
-      window.history.replaceState(null, '', `${window.location.pathname}${q ? `?${q}` : ''}${window.location.hash}`);
+    if (params.get('demo') === '1' || isVipUrl) {
+      if (params.get('demo') === '1') {
+        params.delete('demo');
+        const q = params.toString();
+        window.history.replaceState(null, '', `${window.location.pathname}${q ? `?${q}` : ''}${window.location.hash}`);
+      }
       await this.tryDemo();
     }
   }

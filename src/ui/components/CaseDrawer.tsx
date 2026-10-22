@@ -421,7 +421,7 @@ export function CaseDrawer({ receiptId }: { receiptId: string }) {
         </div>
       ) : null}
       <div className="action-with-help">
-        <button type="button" className="btn btn-secondary" onClick={() => proposeFromCase(receipt.id)}>
+        <button type="button" className="btn btn-secondary btn-propose-rule" onClick={() => proposeFromCase(receipt.id)}>
           {COPY.proposeKnowledge}
         </button>
         <span className="help">{pending ? COPY.proposeKnowledgeHelp : COPY.confirmationSaved}</span>
