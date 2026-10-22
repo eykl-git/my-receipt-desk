@@ -51,16 +51,18 @@ export function Counters() {
         <span className="headline-outcome-dot" />
         <span className="headline-outcome-text">
           {m.uniqueReceipts === 0 ? (
-            'Workspace empty · Load demo batch or add your files to begin'
+            'AI Matching Engine Active · Load demo batch or add your files to begin'
           ) : (
             <>
-              <strong>{m.receiptsWithConfirmedMatches + m.safeProposals.x} of {m.uniqueReceipts}</strong> receipts ready
+              <strong>{m.receiptsWithConfirmedMatches + m.safeProposals.x} of {m.uniqueReceipts}</strong> receipts auto-ready
               {m.needsDecision > 0 ? (
                 <> · <strong className="text-amber">{m.needsDecision}</strong> need your decision</>
               ) : (
-                ' · all clear'
+                ' · all cases reconciled'
               )}
-              {m.activeRules > 0 ? (
+              {m.newlyReady.length > 0 ? (
+                <> · <strong className="text-teal">✨ {m.newlyReady.length} auto-resolved by learned rules</strong></>
+              ) : m.activeRules > 0 ? (
                 <> · <strong className="text-teal">{m.activeRules}</strong> rules compounding</>
               ) : null}
             </>

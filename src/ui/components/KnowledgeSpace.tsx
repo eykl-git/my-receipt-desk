@@ -183,7 +183,19 @@ function PhraseBar() {
         {COPY.phraseHelp}
         <ul className="phrase-examples">
           {COPY.phraseExamples.map((x) => (
-            <li key={x}>“{x}”</li>
+            <li key={x}>
+              <button
+                type="button"
+                className="phrase-example-pill"
+                onClick={() => {
+                  setText(x);
+                  setRefusal(null);
+                }}
+                title="Click to try this phrase"
+              >
+                “{x}”
+              </button>
+            </li>
           ))}
         </ul>
       </div>
@@ -224,10 +236,13 @@ export function KnowledgeSpace() {
         <h2 id="col-knowledge" className="column-title">
           {COPY.knowledgeSpace}
         </h2>
-        <button type="button" className="btn btn-secondary btn-small" onClick={proposeRule}>
-          <IconPlus />
-          {COPY.proposeRule}
-        </button>
+        <div className="ks-head-controls">
+          <span className="ks-intelligence-badge">✨ Knowledge Loop</span>
+          <button type="button" className="btn btn-secondary btn-small" onClick={proposeRule}>
+            <IconPlus />
+            {COPY.proposeRule}
+          </button>
+        </div>
       </div>
       <div className="ks-explain-wrap">
         <p className="ks-explain">{COPY.knowledgeExplain}</p>
