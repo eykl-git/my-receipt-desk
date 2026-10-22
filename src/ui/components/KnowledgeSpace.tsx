@@ -229,9 +229,11 @@ export function KnowledgeSpace() {
           {COPY.proposeRule}
         </button>
       </div>
-      <p className="ks-explain">{COPY.knowledgeExplain}</p>
-      <p className="ks-line">{COPY.knowledgeLine}</p>
-      <p className="ks-note">{COPY.notRetrained}</p>
+      <div className="ks-explain-wrap">
+        <p className="ks-explain">{COPY.knowledgeExplain}</p>
+        <p className="ks-line">{COPY.knowledgeLine}</p>
+        <p className="ks-note">{COPY.notRetrained}</p>
+      </div>
       <KnowledgeGaps />
       {!anyApproved ? <p className="empty-state">{COPY.noRules}</p> : null}
 
@@ -266,21 +268,27 @@ export function KnowledgeSpace() {
       </section>
 
       <section className="ks-section" aria-label={COPY.safetyChecks}>
-        <h3 className="ks-section-title">
-          <IconLock />
-          {COPY.safetyChecks}
-        </h3>
-        <ul className="safety-list">
-          {SAFETY_INVARIANTS.map((inv) => (
-            <li key={inv.id} className="safety-card" aria-label={`${inv.id} ${inv.title}. ${COPY.safetyCardLabel}`}>
-              <span className="safety-head">
-                <span className="mono">{inv.id}</span>
-                <LockChip text={COPY.safetyBadge} />
-              </span>
-              <span className="safety-title">{inv.title}</span>
-            </li>
-          ))}
-        </ul>
+        <details className="ks-safety-disclosure" data-testid="safety-disclosure">
+          <summary className="ks-safety-summary">
+            <span className="ks-safety-summary-left">
+              <IconLock />
+              <span className="ks-safety-title-text">{COPY.safetyChecks}</span>
+              <span className="badge-quiet">10 built-in rules active</span>
+            </span>
+            <span className="ks-safety-toggle-hint">View guardrails ▾</span>
+          </summary>
+          <ul className="safety-list">
+            {SAFETY_INVARIANTS.map((inv) => (
+              <li key={inv.id} className="safety-card" aria-label={`${inv.id} ${inv.title}. ${COPY.safetyCardLabel}`}>
+                <span className="safety-head">
+                  <span className="mono">{inv.id}</span>
+                  <LockChip text={COPY.safetyBadge} />
+                </span>
+                <span className="safety-title">{inv.title}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
       </section>
     </section>
   );

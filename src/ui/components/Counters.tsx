@@ -47,6 +47,26 @@ export function Counters() {
   );
   return (
     <section className="counters" aria-labelledby="counters-title">
+      <div className="headline-outcome-banner" data-testid="headline-outcome">
+        <span className="headline-outcome-dot" />
+        <span className="headline-outcome-text">
+          {m.uniqueReceipts === 0 ? (
+            'Workspace empty · Load demo batch or add your files to begin'
+          ) : (
+            <>
+              <strong>{m.receiptsWithConfirmedMatches + m.safeProposals.x} of {m.uniqueReceipts}</strong> receipts ready
+              {m.needsDecision > 0 ? (
+                <> · <strong className="text-amber">{m.needsDecision}</strong> need your decision</>
+              ) : (
+                ' · all clear'
+              )}
+              {m.activeRules > 0 ? (
+                <> · <strong className="text-teal">{m.activeRules}</strong> rules compounding</>
+              ) : null}
+            </>
+          )}
+        </span>
+      </div>
       <div className="counters-head">
         <h2 id="counters-title" className="section-label">
           {COPY.countersTitle}

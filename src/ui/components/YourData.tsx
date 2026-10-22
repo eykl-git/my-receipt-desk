@@ -97,17 +97,20 @@ function CurrencySetting() {
           {error}
         </p>
       ) : null}
-      <p className="muted samples">
-        <a className="link-button" href={assetUrl('samples/sample-receipt-my.png')} download="sample-receipt-my.png">
-          <IconDownload />
-          {COPY.sampleReceiptMy}
-        </a>{' '}
-        <a className="link-button" href={assetUrl('samples/example-card-statement-my.csv')} download="example-card-statement-my.csv">
-          <IconDownload />
-          {COPY.sampleCsvMy}
-        </a>
-        <span className="block">{COPY.samplesNote}</span>
-      </p>
+      <details className="samples-disclosure">
+        <summary className="samples-summary">Sample test files (Malaysia MYR)</summary>
+        <p className="muted samples">
+          <a className="link-button" href={assetUrl('samples/sample-receipt-my.png')} download="sample-receipt-my.png">
+            <IconDownload />
+            {COPY.sampleReceiptMy}
+          </a>{' '}
+          <a className="link-button" href={assetUrl('samples/example-card-statement-my.csv')} download="example-card-statement-my.csv">
+            <IconDownload />
+            {COPY.sampleCsvMy}
+          </a>
+          <span className="block">{COPY.samplesNote}</span>
+        </p>
+      </details>
     </div>
   );
 }
