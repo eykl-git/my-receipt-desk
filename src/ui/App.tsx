@@ -39,6 +39,7 @@ import { SpreadsheetView } from './components/SpreadsheetView';
 import { TourBar } from './components/TourBar';
 import { TransactionDrawer } from './components/TransactionDrawer';
 import { YourData } from './components/YourData';
+import { InviteGate } from './components/InviteGate';
 import { IconClose, IconInfo } from './icons';
 
 const TABS: Array<{ id: TabId; label: string }> = [
@@ -232,41 +233,43 @@ function StorageProblemsBanner() {
 export function App() {
   const s = useAppState();
   return (
-    <div className="app">
-      <Header />
-      <p className="notice-bar" role="note">
-        {COPY.notice}
-      </p>
-      {s.storage ? (
-        <div className="banner banner-error banner-wrap" role="alert" data-testid="storage-banner">
-          <IconInfo />
-          <span>{COPY.storageBanner[s.storage]}</span>
-          {s.storage === 'newer_version' ? <DeleteNewerData /> : null}
+    <InviteGate>
+      <div className="app">
+        <Header />
+        <p className="notice-bar" role="note">
+          {COPY.notice}
+        </p>
+        {s.storage ? (
+          <div className="banner banner-error banner-wrap" role="alert" data-testid="storage-banner">
+            <IconInfo />
+            <span>{COPY.storageBanner[s.storage]}</span>
+            {s.storage === 'newer_version' ? <DeleteNewerData /> : null}
+          </div>
+        ) : null}
+        <StorageProblemsBanner />
+        {s.notice ? (
+          <div className={`banner banner-${s.notice.tone}`} role={s.notice.tone === 'error' ? 'alert' : 'status'}>
+            <IconInfo />
+            <span>{s.notice.text}</span>
+            <button type="button" className="btn btn-tertiary btn-small" onClick={() => store.dismissNotice()}>
+              <IconClose />
+              {COPY.close}
+            </button>
+          </div>
+        ) : null}
+        {s.ready ? (
+          <>
+            <TourBar />
+            <Counters />
+            {s.view === 'spreadsheet' ? <SpreadsheetView /> : <Columns />}
+          </>
+        ) : null}
+        <Drawer />
+        <DialogHost />
+        <div className="sr-only" aria-live="polite" data-testid="live-region">
+          {s.live}
         </div>
-      ) : null}
-      <StorageProblemsBanner />
-      {s.notice ? (
-        <div className={`banner banner-${s.notice.tone}`} role={s.notice.tone === 'error' ? 'alert' : 'status'}>
-          <IconInfo />
-          <span>{s.notice.text}</span>
-          <button type="button" className="btn btn-tertiary btn-small" onClick={() => store.dismissNotice()}>
-            <IconClose />
-            {COPY.close}
-          </button>
-        </div>
-      ) : null}
-      {s.ready ? (
-        <>
-          <TourBar />
-          <Counters />
-          {s.view === 'spreadsheet' ? <SpreadsheetView /> : <Columns />}
-        </>
-      ) : null}
-      <Drawer />
-      <DialogHost />
-      <div className="sr-only" aria-live="polite" data-testid="live-region">
-        {s.live}
       </div>
-    </div>
+    </InviteGate>
   );
 }
