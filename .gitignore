@@ -1,0 +1,14 @@
+node_modules
+dist
+coverage
+test-results
+playwright-report
+.DS_Store
+*.tsbuildinfo
+public/ocr/
+.agents/
+.kiro/
+.vercel
+.env.local
+.env.*.local
+

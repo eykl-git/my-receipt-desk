@@ -1,0 +1,14 @@
+{
+  "image": "public/samples/sample-receipt-my-zh.png",
+  "fictional": true,
+  "region": "malaysia",
+  "languages": ["chi_sim", "eng"],
+  "expected": {
+    "merchant": "示例美食有限公司",
+    "date": "2026-03-16",
+    "amountMinor": 2650,
+    "currency": "MYR"
+  },
+  "measuredUnclear": [],
+  "statementRow": "16/03/2026,17/03/2026,CONTOH MAKANAN KL,-26.50,MYR"
+}

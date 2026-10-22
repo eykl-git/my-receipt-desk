@@ -1,0 +1,55 @@
+# CI for My Receipt Desk (design §16, REQ-19.2).
+# Runs on every push and pull request. Nothing here deploys; see deploy.yml.
+# Branch protection ("require this check before merging") is a repository
+# setting and cannot be enforced from this file (README "Publish").
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies (lockfile only)
+        run: npm ci
+
+      # Copies the self-hosted OCR worker, core wasm and language data from
+      # node_modules into public/ocr/ (gitignored). No network access.
+      - name: Copy OCR assets
+        run: npm run ocr:assets
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Dev-server suite (E1–E6, E8 and stage specs), then the Pages build
+      # served under /my-receipt-desk/ (E7 smoke and OCR/CSP smoke).
+      - name: Browser tests
+        run: npm run e2e
+
+      - name: Dependency audit
+        run: npm audit --audit-level=high

@@ -1,0 +1,56 @@
+/* Design tokens (design §9.4, brief §24, Stitch UX-Audit Modern Minimal). Contrast ratios ≥ 4.5:1 WCAG AA. */
+:root {
+  --font-sans: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Strict 2-tone surface discipline: warm-neutral canvas + pure white surfaces */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  --color-knowledge: #0f766e; /* rgb(15, 118, 110) — 5.47:1 on white, 5.25:1 on #f0fdfa */
+  --color-knowledge-bg: #f0fdfa;
+  --color-knowledge-border: #99f6e4;
+  --color-knowledge-strong: #115e59;
+  --color-confirmed: #15803d; /* green: recorded (4.79:1 on #f0fdf4) */
+  --color-confirmed-bg: #f0fdf4;
+  --color-confirmed-border: #bbf7d0;
+  --color-review: #b45309; /* amber on #fffbeb: >4.73:1 */
+  --color-review-bg: #fffbeb;
+  --color-review-border: #fde68a;
+  --color-grey-bg: #f1f5f9;
+  --color-danger: #b42318;
+  --color-focus: #2563eb;
+  --color-code-bg: #1e293b;
+  --color-code-text: #f8fafc;
+
+  --text-11: 11px;
+  --text-12: 12px;
+  --text-13: 13px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-22: 22px;
+
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* UX-Audit shadow restraint: max blur <= 16px, no colored shadows */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-raised: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-overlay: 0 12px 16px rgba(15, 23, 42, 0.12);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 120ms;
+  --t-med: 180ms;
+}

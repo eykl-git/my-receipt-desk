@@ -1,0 +1,14 @@
+{
+  "image": "public/samples/sample-receipt-my.png",
+  "fictional": true,
+  "region": "malaysia",
+  "languages": ["eng", "msa"],
+  "expected": {
+    "merchant": "CONTOH MART SDN BHD",
+    "date": "2026-03-14",
+    "amountMinor": 2300,
+    "currency": "MYR"
+  },
+  "measuredUnclear": [],
+  "statementRow": "14/03/2026,15/03/2026,CONTOH MART PJ,-23.00,MYR"
+}

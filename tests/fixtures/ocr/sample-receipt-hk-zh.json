@@ -1,0 +1,15 @@
+{
+  "image": "public/samples/sample-receipt-hk-zh.png",
+  "fictional": true,
+  "region": "hong-kong",
+  "languages": ["chi_tra", "eng"],
+  "expected": {
+    "merchant": "示範茶餐廳有限公司",
+    "date": "2026-03-18",
+    "amountMinor": 9020,
+    "currency": "HKD"
+  },
+  "measuredUnclear": ["merchant"],
+  "measuredNote": "Measured 2026-10-21: the engine reads the merchant text correctly but scores the character 餐 at 0, so the merchant field is unclear (value null, raw kept). See .agents/tasks/ocr/verification.md.",
+  "statementRow": null
+}

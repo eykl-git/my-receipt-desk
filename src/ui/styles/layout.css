@@ -1,0 +1,585 @@
+/* Layout (design §9.3, brief §24, Stitch UX-Audit Modern Minimal): header, notice, tour bar, counters, three columns or tabs. */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
+
+.app-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 8px var(--space-4) 8px var(--space-6);
+}
+
+.app-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.app-header .segmented {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  padding: 2px;
+  gap: 1px;
+}
+
+.app-header .segmented-option {
+  padding: 0 8px;
+  min-height: 26px;
+  font-size: var(--text-12);
+  font-weight: 500;
+  border-radius: 5px;
+  border: 0 !important;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.app-header .segmented-option[aria-pressed='true'] {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  box-shadow: var(--shadow-xs);
+}
+
+.app-header .field-inline {
+  gap: 6px;
+}
+
+.app-header .field-inline .field-label {
+  font-size: var(--text-11);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.app-header .select {
+  max-width: 150px;
+  font-size: var(--text-12);
+  min-height: 28px;
+  padding: 2px 8px;
+  background-color: var(--color-surface-subtle);
+  border-color: var(--color-border);
+}
+
+.app-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.app-title::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: var(--color-knowledge);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3Cpath d='M12 3l8 4v5c0 5.25-3.5 9.75-8 11-4.5-1.25-8-5.75-8-11V7l8-4z'/%3E%3C/svg%3E");
+  background-size: 13px 13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex: none;
+}
+
+.app-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+/* Demote utility actions to quiet neutral navigation links (Principle A & G) */
+.app-header-actions .btn {
+  font-size: var(--text-12);
+  font-weight: 500;
+  min-height: 28px;
+  padding: 0 7px;
+  gap: 4px;
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.app-header-actions .btn .icon {
+  display: none;
+}
+
+.app-header-actions .btn:hover:not(:disabled) {
+  color: var(--color-text);
+  background-color: var(--color-surface-subtle);
+}
+
+.notice-bar {
+  padding: 4px var(--space-6);
+  font-size: var(--text-11);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-2) var(--space-6) 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  font-size: var(--text-13);
+  box-shadow: var(--shadow-xs);
+}
+
+.banner > span {
+  flex: 1;
+}
+
+/* The storage banner's confirm step takes its own full-width row (A-S5-12). */
+.banner-wrap {
+  flex-wrap: wrap;
+}
+
+.banner-wrap > .confirm-box {
+  flex: 1 1 100%;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.banner-error {
+  border-color: var(--color-review-border);
+  background-color: var(--color-review-bg);
+  color: #7c2d12;
+}
+
+/* Dark Slate Hero Command Bar for Guided Demo (Stitch UX-Audit focal hierarchy) */
+.tour-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px var(--space-4);
+  margin: var(--space-2) var(--space-6) 0;
+  padding: 10px 16px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-raised);
+}
+
+.tour-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 96px;
+  padding: 4px 10px;
+  background-color: #115e59;
+  border: 1px solid #0d9488;
+  border-radius: 6px;
+}
+
+.tour-step-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.tour-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.tour-dot {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #0f766e;
+}
+
+.tour-dot-done {
+  background-color: #5eead4;
+}
+
+.tour-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  flex: 1 1 100%;
+}
+
+.tour-copy {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.tour-text {
+  font-size: var(--text-13);
+  font-weight: 500;
+  color: #f8fafc;
+  line-height: 1.45;
+}
+
+.tour-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tour-bar .btn-primary {
+  background-color: #0f766e;
+  border-color: #14b8a6;
+  color: #ffffff;
+}
+
+.tour-bar .btn-primary:hover:not(:disabled) {
+  background-color: #0d9488;
+  border-color: #2dd4bf;
+}
+
+.tour-bar .btn-secondary {
+  background-color: #1e293b;
+  border-color: #475569;
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+.tour-bar .btn-secondary:hover:not(:disabled) {
+  background-color: #334155;
+  border-color: #94a3b8;
+  color: #ffffff;
+}
+
+.tour-bar .btn-tertiary {
+  background-color: transparent;
+  color: #cbd5e1;
+  font-size: var(--text-12);
+  font-weight: 500;
+  min-height: 26px;
+  padding: 0 6px;
+}
+
+.tour-bar .btn-tertiary:hover:not(:disabled) {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.tour-hint {
+  font-size: var(--text-12);
+  color: #cbd5e1;
+}
+
+.tour-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  flex: 1 1 100%;
+  padding-top: 4px;
+  border-top: 1px solid #1e293b;
+}
+
+.tour-bar .disabled-reason {
+  color: #cbd5e1;
+}
+
+.control-with-reason {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.disabled-reason {
+  font-size: var(--text-12);
+  color: var(--color-text-secondary);
+}
+
+/* Minimalist Flat KPI Strip (Stitch UX-Audit: zero nested boxes-in-boxes) */
+.counters {
+  margin: var(--space-2) var(--space-6) 0;
+  padding: 8px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-xs);
+}
+
+.counters-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-surface-subtle);
+}
+
+.section-label {
+  font-size: var(--text-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.stat-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat-group {
+  min-width: 0;
+  padding: 2px 14px 2px 0;
+  background-color: transparent;
+  border: 0;
+  border-right: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.stat-group:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.stat-group:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+@media (max-width: 1023px) {
+  .stat-group,
+  .stat-group:first-child,
+  .stat-group:last-child {
+    padding: 6px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .stat-group:last-child {
+    border-bottom: 0;
+  }
+}
+
+.stat-group-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.stat-group-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-knowledge);
+  flex: none;
+}
+
+.stat-group:nth-child(2) .stat-group-title::before {
+  background-color: #d97706;
+}
+
+.stat-group:nth-child(4) .stat-group-title::before {
+  background-color: #0f172a;
+}
+
+.stat-group-knowledge {
+  background-color: transparent;
+  border-color: var(--color-border);
+}
+
+.stat-group-knowledge .stat-group-title {
+  color: var(--color-knowledge-strong);
+}
+
+.stat-list {
+  margin: 0;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: 1px 0;
+  font-size: var(--text-12);
+  line-height: 1.4;
+}
+
+.stat-label {
+  color: var(--color-text-secondary);
+}
+
+.stat-value {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-12);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.stat-link {
+  color: var(--color-text-secondary);
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 2px;
+  font-size: var(--text-12);
+}
+
+.stat-link:hover {
+  color: var(--color-knowledge-strong);
+}
+
+.drill {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-12);
+}
+
+/* Spacious 3-Column Workbench — strict 2-tone surface discipline (white cards on slate-50 canvas) */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.12fr) minmax(320px, 1.18fr);
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-6) var(--space-6);
+  flex: 1;
+  min-height: 0;
+  align-items: start;
+}
+
+.column {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-xs);
+}
+
+@media (min-width: 1024px) {
+  .column {
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    position: sticky;
+    top: var(--space-3);
+  }
+}
+
+.column-knowledge {
+  border-top: 2px solid var(--color-knowledge);
+}
+
+.column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* S6: keep a column's header action on one line (it wrapped to two at 1024 px). */
+.column-head .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.column-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.tabs {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tablist {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.tab {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  line-height: 1.25;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font: inherit;
+  font-size: var(--text-14);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.tab[aria-selected='true'] {
+  color: var(--color-knowledge-strong);
+  border-bottom-color: var(--color-knowledge);
+}
+
+.sheet {
+  padding: var(--space-4) var(--space-6) var(--space-6);
+}
+
+@media (max-width: 1023px) {
+  .app-header,
+  .notice-bar {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  .tour-bar,
+  .counters,
+  .banner {
+    margin-left: var(--space-4);
+    margin-right: var(--space-4);
+  }
+  .sheet {
+    padding: var(--space-4);
+  }
+  .app-header-actions {
+    margin-left: 0;
+  }
+}
