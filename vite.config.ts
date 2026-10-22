@@ -9,7 +9,7 @@ import { normalizeBase } from './src/config/base.ts';
  * same-origin script). The dev server gets no CSP (Vite injects inline HMR code).
  */
 export const CSP =
-  "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
+  "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'";
 
 function cspMeta(): Plugin {
   return {
